@@ -5,7 +5,10 @@
   <title>Orgill PREP Program</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+
+    /* Global font sizing upgrade */
     :root {
+      font-size: 18px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color-scheme: light;
     }
@@ -19,7 +22,7 @@
     body {
       background: #f5f5f7;
       color: #1f2933;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     header {
@@ -35,7 +38,7 @@
     }
 
     header .brand {
-      font-size: 1.35rem;
+      font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -44,7 +47,7 @@
     header nav a {
       color: #ffecec;
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 1rem;
       margin-left: 1rem;
       padding-bottom: 0.1rem;
       border-bottom: 1px solid transparent;
@@ -54,9 +57,10 @@
       border-bottom-color: #ffecec;
     }
 
+    /* Full-width layout */
     main {
       width: 100%;
-      margin: 1.75rem auto 2.5rem;
+      margin: 2rem auto 3rem;
       padding: 0 2rem;
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -82,80 +86,50 @@
     .card {
       background: #ffffff;
       border-radius: 0.85rem;
-      padding: 1.2rem 1.4rem;
+      padding: 1.4rem 1.5rem;
       box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
       border: 1px solid #e5e7eb;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.6rem;
     }
 
+    /* Larger headings */
     .card h2 {
-      font-size: 1.2rem;
-      margin-bottom: 0.65rem;
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
       color: #111827;
     }
 
     .card h3 {
-      font-size: 1rem;
-      margin-top: 0.8rem;
-      margin-bottom: 0.3rem;
+      font-size: 1.2rem;
+      margin-top: 0.9rem;
+      margin-bottom: 0.4rem;
       color: #111827;
     }
 
-    p {
-      margin-bottom: 0.4rem;
-      font-size: 0.95rem;
+    /* Body text upgrade */
+    p, ul, li, td, th {
+      font-size: 1rem;
     }
 
     ul {
-      margin-left: 1.1rem;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
+      margin-left: 1.2rem;
+      margin-bottom: 0.6rem;
     }
 
     .muted {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #6b7280;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 0.2rem 0.6rem;
-      font-size: 0.8rem;
-      background: #f9fafb;
-      margin-right: 0.35rem;
-      margin-top: 0.15rem;
-    }
-
-    .summary-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.6rem;
-      margin-top: 0.6rem;
-      margin-bottom: 0.85rem;
-      font-size: 0.9rem;
-    }
-
-    .summary-item {
-      padding: 0.45rem 0.65rem;
-      border-radius: 999px;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
-      margin-top: 0.4rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
     }
 
     th, td {
-      padding: 0.45rem 0.4rem;
+      padding: 0.6rem 0.5rem;
       border-bottom: 1px solid #e5e7eb;
       text-align: left;
     }
@@ -181,21 +155,22 @@
     .pdf-embed {
       border: 1px solid #d1d5db;
       border-radius: 0.5rem;
-      margin-top: 0.4rem;
-      margin-bottom: 0.4rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
       width: 100%;
-      height: 380px;
+      height: 420px;
     }
 
     footer {
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: #9ca3af;
       padding: 1.5rem 0 1rem;
     }
 
     a {
       color: #b80000;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -217,25 +192,35 @@
       <section class="card" id="about">
         <h2>Pricing Review and Evaluation Program (PREP)</h2>
         <p>
-          The Pricing Review and Evaluation Program (PREP) is Orgill’s biweekly pricing maintenance
-          service that updates customer retail pricing based on the latest vendor costs and market benchmarks.
+          The Pricing Review and Evaluation Program (PREP) provides bi-weekly cost and retail updates
+          based on a retailer’s purchase history, ensuring pricing remains current, competitive, and aligned
+          with Orgill programs.
         </p>
       </section>
 
       <section class="card" id="options">
         <h2>PREP Options</h2>
 
-        <h3>PREP Option 1</h3>
-        <p>Electronic PREP delivery designed for automated POS loading.</p>
+        <h3>PREP Option 1 – My Store Will Print the Updated Labels ($50/month)</h3>
+        <p>
+          Retailers receive bi-weekly PREP updates with cost and retail changes based on 24 months of
+          purchase history. Reports and tools are available through Orgill.com. Stores print their own
+          updated labels in-house, and electronic files may still be transmitted to the POS system.
+        </p>
 
-        <h3>PREP Option 2</h3>
-        <p>PREP reports delivered in spreadsheet or report format for manual review.</p>
+        <h3>PREP Option 2 – Orgill Prints and Ships Updated Labels ($70/month)</h3>
+        <p>
+          Includes all features of Option 1, plus Orgill prints updated labels and ships them directly to
+          the retailer. Stores may choose whether stickers are received with each Orgill truck delivery
+          or only with the bi-weekly PREP updates.
+        </p>
       </section>
 
       <section class="card" id="documents">
         <h2>PREP Documents</h2>
         <p class="muted">
-          Reference document explaining PREP reports such as Retail Price Alerts and purchase history updates.
+          This document explains the PREP related reports retailers receive, such as Retail Price Alerts,
+          purchase history updates, discontinued item reports, and promotions alerts.
         </p>
 
         <h3>PREP Report Details</h3>
@@ -253,10 +238,10 @@
         </p>
 
         <div class="summary-row">
-          <div class="summary-item"><strong>Today:</strong> <span id="todayLabel"></span></div>
-          <div class="summary-item"><strong>Next PREP run:</strong> <span id="nextRunLabel"></span></div>
-          <div class="summary-item"><strong>Runs shown:</strong> <span id="runCountLabel"></span></div>
-          <div class="summary-item"><strong>Countdown:</strong> <span id="countdownLabel"></span></div>
+          <div><strong>Today:</strong> <span id="todayLabel"></span></div>
+          <div><strong>Next PREP run:</strong> <span id="nextRunLabel"></span></div>
+          <div><strong>Runs shown:</strong> <span id="runCountLabel"></span></div>
+          <div><strong>Countdown:</strong> <span id="countdownLabel"></span></div>
         </div>
 
         <table>
@@ -275,8 +260,14 @@
       <section class="card" id="contact">
         <h2>PREP Contacts</h2>
         <p><strong>Pricing Department</strong><br>Orgill, Inc.</p>
-        <p><strong>Jackie Bacon</strong><br>Vice President<br>Extension 6523</p>
-        <p><strong>Luke Houston</strong><br>Pricing Analytics Specialist<br>Extension 2182</p>
+
+        <p><strong>Jackie Bacon</strong><br>
+        Vice President<br>
+        Extension 6523</p>
+
+        <p><strong>Luke Houston</strong><br>
+        Pricing Analytics Specialist<br>
+        Extension 2182</p>
       </section>
     </div>
   </main>
@@ -286,7 +277,6 @@
   </footer>
 
   <script>
-    // PREP cycle anchor date requested: first PREP run on 12/20/2025
     const ANCHOR_PREP_DATE = new Date("2025-12-20T00:00:00");
     const END_DATE = new Date("2026-12-31T00:00:00");
 
@@ -320,33 +310,29 @@
 
       document.getElementById("todayLabel").textContent = formatDate(today);
 
-      if (cleanToday > END_DATE) {
-        document.getElementById("nextRunLabel").textContent = "Schedule ended";
-        document.getElementById("countdownLabel").textContent = "Ended on Dec 31, 2026";
-        document.getElementById("runCountLabel").textContent = "0";
-        return;
-      }
+      if (cleanToday > END_DATE) return;
 
       const nextPrep = getNextPrepDate(today, ANCHOR_PREP_DATE);
       document.getElementById("nextRunLabel").textContent = formatDate(nextPrep);
 
-      const diffDays = Math.round((stripTime(nextPrep) - cleanToday) / 86400000);
+      const days = Math.round((stripTime(nextPrep) - cleanToday) / 86400000);
       document.getElementById("countdownLabel").textContent =
-        diffDays === 0 ? "PREP is today" :
-        diffDays === 1 ? "1 day" :
-        diffDays + " days";
+        days === 0 ? "PREP is today" :
+        days === 1 ? "1 day" :
+        days + " days";
 
       const tbody = document.getElementById("scheduleBody");
       tbody.innerHTML = "";
 
       let runs = [];
-      let index = 0;
+      let idx = 0;
+
       while (true) {
         const d = new Date(nextPrep);
-        d.setDate(nextPrep.getDate() + index * 14);
+        d.setDate(nextPrep.getDate() + idx * 14);
         if (stripTime(d) > END_DATE) break;
         runs.push(d);
-        index++;
+        idx++;
       }
 
       document.getElementById("runCountLabel").textContent = runs.length;
@@ -357,6 +343,7 @@
         if (stripTime(runDate).getTime() === stripTime(nextPrep).getTime()) {
           row.classList.add("row-next");
         }
+
         if (stripTime(runDate).getTime() === cleanToday.getTime()) {
           row.classList.add("row-today");
         }
