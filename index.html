@@ -55,17 +55,17 @@
     }
 
     main {
-      max-width: 1100px;
+      width: 100%;
       margin: 1.75rem auto 2.5rem;
-      padding: 0 1rem;
+      padding: 0 2rem;
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.25fr);
-      gap: 1.75rem;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
     }
 
     @media (max-width: 900px) {
       main {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: 1fr;
       }
       header {
         justify-content: center;
@@ -112,18 +112,6 @@
       font-size: 0.95rem;
     }
 
-    .tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 0.15rem 0.45rem;
-      border-radius: 999px;
-      background: #fee2e2;
-      color: #7f1d1d;
-      margin-bottom: 0.4rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
     .muted {
       font-size: 0.9rem;
       color: #6b7280;
@@ -142,11 +130,6 @@
       margin-top: 0.15rem;
     }
 
-    .pill span {
-      font-weight: 600;
-    }
-
-    /* Calendar styles */
     .summary-row {
       display: flex;
       flex-wrap: wrap;
@@ -186,18 +169,15 @@
       background: #fafafa;
     }
 
-    /* Highlight next run */
     .row-next {
       background: #ecfdf5 !important;
     }
 
-    /* Highlight today if it is a PREP date */
     .row-today {
       outline: 2px solid #2563eb;
       outline-offset: -2px;
     }
 
-    /* PDF embeds */
     .pdf-embed {
       border: 1px solid #d1d5db;
       border-radius: 0.5rem;
@@ -211,18 +191,15 @@
       text-align: center;
       font-size: 0.8rem;
       color: #9ca3af;
-      padding-bottom: 1rem;
+      padding: 1.5rem 0 1rem;
     }
 
     a {
       color: #b80000;
     }
-
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="brand">Orgill PREP</div>
@@ -236,121 +213,57 @@
   </header>
 
   <main>
-    <!-- Left side: overview + options + documents -->
     <div>
       <section class="card" id="about">
-        <span class="tag">Internal use</span>
         <h2>Pricing Review and Evaluation Program (PREP)</h2>
         <p>
-          The Pricing Review and Evaluation Program (PREP) is Orgill’s recurring pricing maintenance
-          service that keeps customer pricing aligned with current vendor costs, market conditions,
-          and Orgill pricing programs.
+          The Pricing Review and Evaluation Program (PREP) is Orgill’s biweekly pricing maintenance
+          service that updates customer retail pricing based on the latest vendor costs and market benchmarks.
         </p>
-        <p>
-          On each PREP run, updated suggested retails are generated based on the latest cost and
-          competitive benchmarks, using the strategy selected for each customer.
-        </p>
-
-        <h3>How PREP works</h3>
-        <ul>
-          <li>PREP runs occur every other Saturday on a fixed schedule.</li>
-          <li>Runs generate updated pricing files for enrolled customer accounts.</li>
-          <li>Files are delivered in the format set up for each account.</li>
-          <li>Customers review, approve, and load pricing into their POS as needed.</li>
-        </ul>
       </section>
 
       <section class="card" id="options">
         <h2>PREP Options</h2>
 
         <h3>PREP Option 1</h3>
-        <p>
-          Electronic PREP delivery that can integrate directly with the customer’s POS system.
-        </p>
-        <ul>
-          <li>Biweekly PREP files delivered electronically.</li>
-          <li>Best for customers who prefer automated POS file handling.</li>
-        </ul>
-        <div class="pill">
-          <span>Use for</span> POS integrated electronic runs
-        </div>
+        <p>Electronic PREP delivery designed for automated POS loading.</p>
 
         <h3>PREP Option 2</h3>
-        <p>
-          PREP data provided in a review friendly format such as reports or spreadsheets for
-          manual review and loading.
-        </p>
-        <ul>
-          <li>Biweekly PREP files provided as reports or spreadsheets.</li>
-          <li>Best for customers who want to review updates before loading into POS.</li>
-        </ul>
-        <div class="pill">
-          <span>Use for</span> Manual review and loading
-        </div>
-
-        <h3>Enrollment notes</h3>
-        <ul>
-          <li>Confirm the Orgill account number and current PREP status.</li>
-          <li>Verify which PREP option the customer wants.</li>
-          <li>Submit the change through the internal PREP enrollment workflow.</li>
-        </ul>
-        <p class="muted">
-          Accounts must be enrolled in PREP Option 1 or Option 2 to receive PREP runs.
-        </p>
+        <p>PREP reports delivered in spreadsheet or report format for manual review.</p>
       </section>
 
       <section class="card" id="documents">
         <h2>PREP Documents</h2>
         <p class="muted">
-          This document explains the PREP related reports that customers receive, such as Retail Price
-          Alerts, purchase history reports, discontinued item reports, and promotions alerts.
+          Reference document explaining PREP reports such as Retail Price Alerts and purchase history updates.
         </p>
 
         <h3>PREP Report Details</h3>
-        <p>
-          Use this as a reference when explaining PREP reports and their contents to customers or internal teams.
-        </p>
-        <embed
-          class="pdf-embed"
-          src="Prep-Report-Details.pdf"
-          type="application/pdf"
-        />
+        <embed class="pdf-embed" src="Prep-Report-Details.pdf" type="application/pdf" />
         <p><a href="Prep-Report-Details.pdf" download>Download PREP Report Details PDF</a></p>
       </section>
     </div>
 
-    <!-- Right side: calendar + contacts -->
     <div>
       <section class="card" id="calendar">
         <h2>PREP Calendar</h2>
         <p>
-          PREP runs occur every other Saturday. The calendar below shows the last two PREP runs
-          along with the next thirty future runs.
-        </p>
-        <p class="muted">
-          The calendar automatically updates and does not require manual changes.
+          PREP runs occur every other Saturday. The schedule below displays all runs from the next
+          upcoming PREP date through December 31, 2026.
         </p>
 
         <div class="summary-row">
-          <div class="summary-item">
-            <strong>Today:</strong> <span id="todayLabel"></span>
-          </div>
-          <div class="summary-item">
-            <strong>Next PREP run:</strong> <span id="nextRunLabel"></span>
-          </div>
-          <div class="summary-item">
-            <strong>Runs shown:</strong> <span id="runCountLabel"></span>
-          </div>
-          <div class="summary-item">
-            <strong>Countdown:</strong> <span id="countdownLabel"></span>
-          </div>
+          <div class="summary-item"><strong>Today:</strong> <span id="todayLabel"></span></div>
+          <div class="summary-item"><strong>Next PREP run:</strong> <span id="nextRunLabel"></span></div>
+          <div class="summary-item"><strong>Runs shown:</strong> <span id="runCountLabel"></span></div>
+          <div class="summary-item"><strong>Countdown:</strong> <span id="countdownLabel"></span></div>
         </div>
 
-        <table aria-label="Upcoming PREP runs">
+        <table>
           <thead>
             <tr>
               <th>#</th>
-              <th>Run date</th>
+              <th>Date</th>
               <th>Weekday</th>
               <th>Notes</th>
             </tr>
@@ -361,56 +274,41 @@
 
       <section class="card" id="contact">
         <h2>PREP Contacts</h2>
-        <p>
-          For questions about PREP enrollment, schedule, or delivery format, contact:
-        </p>
-        <p>
-          <strong>PREP / Pricing Team</strong><br />
-          Email: <a href="mailto:pricing@orgill.com">pricing@orgill.com</a><br />
-          Phone: (000) 000-0000
-        </p>
+        <p><strong>Pricing Department</strong><br>Orgill, Inc.</p>
+        <p><strong>Jackie Bacon</strong><br>Vice President<br>Extension 6523</p>
+        <p><strong>Luke Houston</strong><br>Pricing Analytics Specialist<br>Extension 2182</p>
       </section>
     </div>
   </main>
 
   <footer>
-    Orgill PREP internal reference – Calendar updates automatically
+    Orgill PREP calendar and reference information through 2026
   </footer>
 
   <script>
-    // Past and future runs to display
-    const PAST_RUNS = 2;
-    const FUTURE_RUNS = 30;
-    const TOTAL_ROWS = PAST_RUNS + FUTURE_RUNS;
+    // PREP cycle anchor date requested: first PREP run on 12/20/2025
+    const ANCHOR_PREP_DATE = new Date("2025-12-20T00:00:00");
+    const END_DATE = new Date("2026-12-31T00:00:00");
 
-    // Anchor PREP date (known PREP Saturday)
-    const ANCHOR_PREP_DATE = new Date("2025-09-13T00:00:00");
-
-    function stripTime(date) {
-      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    function stripTime(d) {
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate());
     }
 
-    function formatDate(date) {
-      return date.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric"
-      });
+    function formatDate(d) {
+      return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
     }
 
-    function weekdayName(date) {
-      return date.toLocaleDateString(undefined, { weekday: "long" });
+    function weekdayName(d) {
+      return d.toLocaleDateString(undefined, { weekday: "long" });
     }
 
     function getNextPrepDate(today, anchor) {
-      const oneDayMs = 86400000;
       const cleanToday = stripTime(today);
       const cleanAnchor = stripTime(anchor);
-
       if (cleanToday <= cleanAnchor) return cleanAnchor;
 
-      const diffDays = Math.floor((cleanToday - cleanAnchor) / oneDayMs);
-      const cycles = Math.ceil(diffDays / 14);
+      const daysBetween = Math.floor((cleanToday - cleanAnchor) / 86400000);
+      const cycles = Math.ceil(daysBetween / 14);
       const next = new Date(cleanAnchor);
       next.setDate(cleanAnchor.getDate() + cycles * 14);
       return next;
@@ -419,66 +317,59 @@
     function buildSchedule() {
       const today = new Date();
       const cleanToday = stripTime(today);
+
+      document.getElementById("todayLabel").textContent = formatDate(today);
+
+      if (cleanToday > END_DATE) {
+        document.getElementById("nextRunLabel").textContent = "Schedule ended";
+        document.getElementById("countdownLabel").textContent = "Ended on Dec 31, 2026";
+        document.getElementById("runCountLabel").textContent = "0";
+        return;
+      }
+
       const nextPrep = getNextPrepDate(today, ANCHOR_PREP_DATE);
+      document.getElementById("nextRunLabel").textContent = formatDate(nextPrep);
 
-      const todayLabel = document.getElementById("todayLabel");
-      const nextRunLabel = document.getElementById("nextRunLabel");
-      const runCountLabel = document.getElementById("runCountLabel");
-      const countdownLabel = document.getElementById("countdownLabel");
-      const tbody = document.getElementById("scheduleBody");
-
-      todayLabel.textContent = formatDate(today);
-      nextRunLabel.textContent = formatDate(nextPrep);
-      runCountLabel.textContent = TOTAL_ROWS;
-
-      // Countdown days
       const diffDays = Math.round((stripTime(nextPrep) - cleanToday) / 86400000);
-      countdownLabel.textContent = 
-          diffDays === 0 ? "PREP run is today" :
-          diffDays === 1 ? "Next PREP run in 1 day" :
-          `Next PREP run in ${diffDays} days`;
+      document.getElementById("countdownLabel").textContent =
+        diffDays === 0 ? "PREP is today" :
+        diffDays === 1 ? "1 day" :
+        diffDays + " days";
 
+      const tbody = document.getElementById("scheduleBody");
       tbody.innerHTML = "";
 
-      // Start list 2 runs before next PREP run
-      const firstDate = new Date(nextPrep);
-      firstDate.setDate(nextPrep.getDate() - PAST_RUNS * 14);
+      let runs = [];
+      let index = 0;
+      while (true) {
+        const d = new Date(nextPrep);
+        d.setDate(nextPrep.getDate() + index * 14);
+        if (stripTime(d) > END_DATE) break;
+        runs.push(d);
+        index++;
+      }
 
-      for (let i = 0; i < TOTAL_ROWS; i++) {
-        const runDate = new Date(firstDate);
-        runDate.setDate(firstDate.getDate() + i * 14);
+      document.getElementById("runCountLabel").textContent = runs.length;
 
+      runs.forEach((runDate, i) => {
         const row = document.createElement("tr");
 
-        const numTd = document.createElement("td");
-        numTd.textContent = i + 1;
-
-        const dateTd = document.createElement("td");
-        dateTd.textContent = formatDate(runDate);
-
-        const weekdayTd = document.createElement("td");
-        weekdayTd.textContent = weekdayName(runDate);
-
-        const notesTd = document.createElement("td");
-        notesTd.textContent = "Standard PREP biweekly run";
-
-        // Highlight next PREP run
         if (stripTime(runDate).getTime() === stripTime(nextPrep).getTime()) {
           row.classList.add("row-next");
-          notesTd.textContent = "Next PREP run";
         }
-
-        // Highlight if today is a PREP day
         if (stripTime(runDate).getTime() === cleanToday.getTime()) {
           row.classList.add("row-today");
         }
 
-        row.appendChild(numTd);
-        row.appendChild(dateTd);
-        row.appendChild(weekdayTd);
-        row.appendChild(notesTd);
+        row.innerHTML = `
+          <td>${i + 1}</td>
+          <td>${formatDate(runDate)}</td>
+          <td>${weekdayName(runDate)}</td>
+          <td>${stripTime(runDate).getTime() === stripTime(nextPrep).getTime() ? "Next PREP run" : "Standard PREP run"}</td>
+        `;
+
         tbody.appendChild(row);
-      }
+      });
     }
 
     document.addEventListener("DOMContentLoaded", buildSchedule);
