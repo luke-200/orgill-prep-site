@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Orgill PREP Program</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f5f5f7;
+      color: #1f2933;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #b80000;
+      color: #ffffff;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    header .brand {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    header nav a {
+      color: #ffecec;
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-left: 1rem;
+      padding-bottom: 0.1rem;
+      border-bottom: 1px solid transparent;
+    }
+
+    header nav a:hover {
+      border-bottom-color: #ffecec;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 1.75rem auto 2.5rem;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.25fr);
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+      header nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 0.85rem;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e5e7eb;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.65rem;
+      color: #111827;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.3rem;
+      color: #111827;
+    }
+
+    p {
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin-left: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      background: #fee2e2;
+      color: #7f1d1d;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .muted {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.8rem;
+      background: #f9fafb;
+      margin-right: 0.35rem;
+      margin-top: 0.15rem;
+    }
+
+    .pill span {
+      font-weight: 600;
+    }
+
+    /* Calendar styles */
+    .summary-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    .summary-item {
+      padding: 0.45rem 0.65rem;
+      border-radius: 999px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+    }
+
+    th, td {
+      padding: 0.45rem 0.4rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    thead th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    /* Highlight next run */
+    .row-next {
+      background: #ecfdf5 !important;
+    }
+
+    /* Highlight today if it is a PREP date */
+    .row-today {
+      outline: 2px solid #2563eb;
+      outline-offset: -2px;
+    }
+
+    /* PDF embeds */
+    .pdf-embed {
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+      width: 100%;
+      height: 380px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      padding-bottom: 1rem;
+    }
+
+    a {
+      color: #b80000;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Orgill PREP</div>
+    <nav>
+      <a href="#about">Overview</a>
+      <a href="#options">PREP Options</a>
+      <a href="#documents">Documents</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#contact">Contacts</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Left side: overview + options + documents -->
+    <div>
+      <section class="card" id="about">
+        <span class="tag">Internal use</span>
+        <h2>Pricing Review and Evaluation Program (PREP)</h2>
+        <p>
+          The Pricing Review and Evaluation Program (PREP) is Orgill’s recurring pricing maintenance
+          service that keeps customer pricing aligned with current vendor costs, market conditions,
+          and Orgill pricing programs.
+        </p>
+        <p>
+          On each PREP run, updated suggested retails are generated based on the latest cost and
+          competitive benchmarks, using the strategy selected for each customer.
+        </p>
+
+        <h3>How PREP works</h3>
+        <ul>
+          <li>PREP runs occur every other Saturday on a fixed schedule.</li>
+          <li>Runs generate updated pricing files for enrolled customer accounts.</li>
+          <li>Files are delivered in the format set up for each account.</li>
+          <li>Customers review, approve, and load pricing into their POS as needed.</li>
+        </ul>
+      </section>
+
+      <section class="card" id="options">
+        <h2>PREP Options</h2>
+
+        <h3>PREP Option 1</h3>
+        <p>
+          Electronic PREP delivery that can integrate directly with the customer’s POS system.
+        </p>
+        <ul>
+          <li>Biweekly PREP files delivered electronically.</li>
+          <li>Best for customers who prefer automated POS file handling.</li>
+        </ul>
+        <div class="pill">
+          <span>Use for</span> POS integrated electronic runs
+        </div>
+
+        <h3>PREP Option 2</h3>
+        <p>
+          PREP data provided in a review friendly format such as reports or spreadsheets for
+          manual review and loading.
+        </p>
+        <ul>
+          <li>Biweekly PREP files provided as reports or spreadsheets.</li>
+          <li>Best for customers who want to review updates before loading into POS.</li>
+        </ul>
+        <div class="pill">
+          <span>Use for</span> Manual review and loading
+        </div>
+
+        <h3>Enrollment notes</h3>
+        <ul>
+          <li>Confirm the Orgill account number and current PREP status.</li>
+          <li>Verify which PREP option the customer wants.</li>
+          <li>Submit the change through the internal PREP enrollment workflow.</li>
+        </ul>
+        <p class="muted">
+          Accounts must be enrolled in PREP Option 1 or Option 2 to receive PREP runs.
+        </p>
+      </section>
+
+      <section class="card" id="documents">
+        <h2>PREP Documents</h2>
+        <p class="muted">
+          This document explains the PREP related reports that customers receive, such as Retail Price
+          Alerts, purchase history reports, discontinued item reports, and promotions alerts.
+        </p>
+
+        <h3>PREP Report Details</h3>
+        <p>
+          Use this as a reference when explaining PREP reports and their contents to customers or internal teams.
+        </p>
+        <embed
+          class="pdf-embed"
+          src="Prep-Report-Details.pdf"
+          type="application/pdf"
+        />
+        <p><a href="Prep-Report-Details.pdf" download>Download PREP Report Details PDF</a></p>
+      </section>
+    </div>
+
+    <!-- Right side: calendar + contacts -->
+    <div>
+      <section class="card" id="calendar">
+        <h2>PREP Calendar</h2>
+        <p>
+          PREP runs occur every other Saturday. The calendar below shows the last two PREP runs
+          along with the next thirty future runs.
+        </p>
+        <p class="muted">
+          The calendar automatically updates and does not require manual changes.
+        </p>
+
+        <div class="summary-row">
+          <div class="summary-item">
+            <strong>Today:</strong> <span id="todayLabel"></span>
+          </div>
+          <div class="summary-item">
+            <strong>Next PREP run:</strong> <span id="nextRunLabel"></span>
+          </div>
+          <div class="summary-item">
+            <strong>Runs shown:</strong> <span id="runCountLabel"></span>
+          </div>
+          <div class="summary-item">
+            <strong>Countdown:</strong> <span id="countdownLabel"></span>
+          </div>
+        </div>
+
+        <table aria-label="Upcoming PREP runs">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Run date</th>
+              <th>Weekday</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleBody"></tbody>
+        </table>
+      </section>
+
+      <section class="card" id="contact">
+        <h2>PREP Contacts</h2>
+        <p>
+          For questions about PREP enrollment, schedule, or delivery format, contact:
+        </p>
+        <p>
+          <strong>PREP / Pricing Team</strong><br />
+          Email: <a href="mailto:pricing@orgill.com">pricing@orgill.com</a><br />
+          Phone: (000) 000-0000
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    Orgill PREP internal reference – Calendar updates automatically
+  </footer>
+
+  <script>
+    // Past and future runs to display
+    const PAST_RUNS = 2;
+    const FUTURE_RUNS = 30;
+    const TOTAL_ROWS = PAST_RUNS + FUTURE_RUNS;
+
+    // Anchor PREP date (known PREP Saturday)
+    const ANCHOR_PREP_DATE = new Date("2025-09-13T00:00:00");
+
+    function stripTime(date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function formatDate(date) {
+      return date.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
+    }
+
+    function weekdayName(date) {
+      return date.toLocaleDateString(undefined, { weekday: "long" });
+    }
+
+    function getNextPrepDate(today, anchor) {
+      const oneDayMs = 86400000;
+      const cleanToday = stripTime(today);
+      const cleanAnchor = stripTime(anchor);
+
+      if (cleanToday <= cleanAnchor) return cleanAnchor;
+
+      const diffDays = Math.floor((cleanToday - cleanAnchor) / oneDayMs);
+      const cycles = Math.ceil(diffDays / 14);
+      const next = new Date(cleanAnchor);
+      next.setDate(cleanAnchor.getDate() + cycles * 14);
+      return next;
+    }
+
+    function buildSchedule() {
+      const today = new Date();
+      const cleanToday = stripTime(today);
+      const nextPrep = getNextPrepDate(today, ANCHOR_PREP_DATE);
+
+      const todayLabel = document.getElementById("todayLabel");
+      const nextRunLabel = document.getElementById("nextRunLabel");
+      const runCountLabel = document.getElementById("runCountLabel");
+      const countdownLabel = document.getElementById("countdownLabel");
+      const tbody = document.getElementById("scheduleBody");
+
+      todayLabel.textContent = formatDate(today);
+      nextRunLabel.textContent = formatDate(nextPrep);
+      runCountLabel.textContent = TOTAL_ROWS;
+
+      // Countdown days
+      const diffDays = Math.round((stripTime(nextPrep) - cleanToday) / 86400000);
+      countdownLabel.textContent = 
+          diffDays === 0 ? "PREP run is today" :
+          diffDays === 1 ? "Next PREP run in 1 day" :
+          `Next PREP run in ${diffDays} days`;
+
+      tbody.innerHTML = "";
+
+      // Start list 2 runs before next PREP run
+      const firstDate = new Date(nextPrep);
+      firstDate.setDate(nextPrep.getDate() - PAST_RUNS * 14);
+
+      for (let i = 0; i < TOTAL_ROWS; i++) {
+        const runDate = new Date(firstDate);
+        runDate.setDate(firstDate.getDate() + i * 14);
+
+        const row = document.createElement("tr");
+
+        const numTd = document.createElement("td");
+        numTd.textContent = i + 1;
+
+        const dateTd = document.createElement("td");
+        dateTd.textContent = formatDate(runDate);
+
+        const weekdayTd = document.createElement("td");
+        weekdayTd.textContent = weekdayName(runDate);
+
+        const notesTd = document.createElement("td");
+        notesTd.textContent = "Standard PREP biweekly run";
+
+        // Highlight next PREP run
+        if (stripTime(runDate).getTime() === stripTime(nextPrep).getTime()) {
+          row.classList.add("row-next");
+          notesTd.textContent = "Next PREP run";
+        }
+
+        // Highlight if today is a PREP day
+        if (stripTime(runDate).getTime() === cleanToday.getTime()) {
+          row.classList.add("row-today");
+        }
+
+        row.appendChild(numTd);
+        row.appendChild(dateTd);
+        row.appendChild(weekdayTd);
+        row.appendChild(notesTd);
+        tbody.appendChild(row);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", buildSchedule);
+  </script>
+
+</body>
+</html>
