@@ -36,7 +36,6 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* Updated header title text */
     header .brand {
       font-size: 1.6rem;
       font-weight: 700;
@@ -44,7 +43,6 @@
       text-transform: uppercase;
     }
 
-    /* Bigger, bold, white nav links */
     header nav a {
       color: #ffffff;
       text-decoration: none;
@@ -167,9 +165,29 @@
       padding: 1.5rem 0 1rem;
     }
 
+    /* Primary Link Styling */
     a {
       color: #b80000;
       font-size: 1rem;
+    }
+
+    /* Button Styling for Sidebar Card */
+    .btn-cancel {
+      display: block;
+      width: 100%;
+      background: #b80000;
+      color: #ffffff !important;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+
+    .btn-cancel:hover {
+      background: #8e0000;
     }
   </style>
 </head>
@@ -183,6 +201,7 @@
       <a href="#documents">Documents</a>
       <a href="#calendar">Calendar</a>
       <a href="#contact">Contacts</a>
+      <a href="cancellation.html" style="color: #ffecec; border-bottom: 1px solid #ffecec;">Cancellation</a>
     </nav>
   </header>
 
@@ -271,6 +290,11 @@
         <p><strong>Luke Houston</strong><br>
         Pricing Analytics Specialist<br>
         Extension 2182</p>
+
+        <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #e5e7eb;">
+        <h2 style="font-size: 1.25rem; color: #b80000;">Agreement Management</h2>
+        <p class="muted">Need to cancel your PREP agreement? Submit your request digitally via our secure form.</p>
+        <a href="cancellation.html" class="btn-cancel">Start Cancellation Form</a>
       </section>
     </div>
   </main>
@@ -362,7 +386,6 @@
       });
     }
 
-    // Force page to open at the top, even on mobile when revisiting
     document.addEventListener("DOMContentLoaded", () => {
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
