@@ -165,11 +165,13 @@
       padding: 1.5rem 0 1rem;
     }
 
+    /* Primary Link Styling */
     a {
       color: #b80000;
       font-size: 1rem;
     }
 
+    /* Button Styling for Sidebar Card */
     .btn-cancel {
       display: block;
       width: 100%;
@@ -208,9 +210,190 @@
       <section class="card" id="about">
         <h2>Profitable Retail Enhancement Packages (PREP)</h2>
         <p>
-          PREP provides bi-weekly cost and retail updates based on a retailer’s purchase history,
-          ensuring pricing remains current, competitive, and aligned with Orgill programs.
+          The Profitable Retail Enhancement Packages (PREP) provides bi-weekly cost and retail updates
+          based on a retailer’s purchase history, ensuring pricing remains current, competitive, and aligned
+          with Orgill programs.
         </p>
       </section>
 
-      <!-- rest stays the same -->
+      <section class="card" id="options">
+        <h2>PREP Options</h2>
+
+        <h3>PREP Option 1 – My Store Will Print the Updated Labels ($50/month)</h3>
+        <p>
+          Retailers receive bi-weekly PREP updates with cost and retail changes based on 24 months of
+          purchase history. Reports and tools are available through Orgill.com. Stores print their own
+          updated labels in-house, and electronic files may still be transmitted to the POS system.
+        </p>
+
+        <h3>PREP Option 2 – Orgill Prints and Ships Updated Labels ($75/month)</h3>
+        <p>
+          Includes all features of Option 1, plus Orgill prints updated labels and ships them directly to
+          the retailer. Stores may choose whether stickers are received with each Orgill truck delivery
+          or only with the bi-weekly PREP updates.
+        </p>
+      </section>
+
+      <section class="card" id="documents">
+        <h2>PREP Documents</h2>
+        <p class="muted">
+          This document explains the PREP related reports retailers receive, such as Retail Price Alerts,
+          purchase history updates, discontinued item reports, and promotions alerts.
+        </p>
+
+        <h3>PREP Report Details</h3>
+        <embed class="pdf-embed" src="Prep-Report-Details.pdf" type="application/pdf" />
+        <p><a href="Prep-Report-Details.pdf" download>Download PREP Report Details PDF</a></p>
+
+        <h3>PREP Presentation</h3>
+        <embed class="pdf-embed" src="PREP-Summer-2025-Meetings.pdf" type="application/pdf" />
+        <p><a href="PREP-Summer-2025-Meetings.pdf" download>Download PREP Presentation PDF</a></p>
+      </section>
+    </div>
+
+    <div>
+      <section class="card" id="calendar">
+        <h2>PREP Calendar</h2>
+        <p>
+          PREP runs occur every other Saturday. The schedule below displays all runs from the next
+          upcoming PREP date through December 31, 2026.
+        </p>
+
+        <div class="summary-row">
+          <div><strong>Today:</strong> <span id="todayLabel"></span></div>
+          <div><strong>Next PREP run:</strong> <span id="nextRunLabel"></span></div>
+          <div><strong>Runs shown:</strong> <span id="runCountLabel"></span></div>
+          <div><strong>Countdown:</strong> <span id="countdownLabel"></span></div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Weekday</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleBody"></tbody>
+        </table>
+      </section>
+
+      <section class="card" id="contact">
+        <h2>PREP Contacts</h2>
+        <p><strong>Pricing Department</strong><br>Orgill, Inc.</p>
+
+        <p><strong>Jackie Bacon</strong><br>
+        Vice President<br>
+        Extension 6523</p>
+
+        <p><strong>Luke Houston</strong><br>
+        Pricing Analytics Specialist<br>
+        Extension 2182</p>
+
+        <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #e5e7eb;">
+        <h2 style="font-size: 1.25rem; color: #b80000;">Agreement Management</h2>
+        <p class="muted">Need to cancel your PREP agreement? Submit your request digitally via our secure form.</p>
+        <a href="cancellation.html" class="btn-cancel">Start Cancellation Form</a>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    Orgill PREP calendar and reference information through 2026
+  </footer>
+
+  <script>
+    const ANCHOR_PREP_DATE = new Date("2025-12-20T00:00:00");
+    const END_DATE = new Date("2026-12-31T00:00:00");
+
+    function stripTime(d) {
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+
+    function formatDate(d) {
+      return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    function weekdayName(d) {
+      return d.toLocaleDateString(undefined, { weekday: "long" });
+    }
+
+    function getNextPrepDate(today, anchor) {
+      const cleanToday = stripTime(today);
+      const cleanAnchor = stripTime(anchor);
+      if (cleanToday <= cleanAnchor) return cleanAnchor;
+
+      const daysBetween = Math.floor((cleanToday - cleanAnchor) / 86400000);
+      const cycles = Math.ceil(daysBetween / 14);
+      const next = new Date(cleanAnchor);
+      next.setDate(cleanAnchor.getDate() + cycles * 14);
+      return next;
+    }
+
+    function buildSchedule() {
+      const today = new Date();
+      const cleanToday = stripTime(today);
+
+      document.getElementById("todayLabel").textContent = formatDate(today);
+
+      if (cleanToday > END_DATE) return;
+
+      const nextPrep = getNextPrepDate(today, ANCHOR_PREP_DATE);
+      document.getElementById("nextRunLabel").textContent = formatDate(nextPrep);
+
+      const days = Math.round((stripTime(nextPrep) - cleanToday) / 86400000);
+      document.getElementById("countdownLabel").textContent =
+        days === 0 ? "PREP is today" :
+        days === 1 ? "1 day" :
+        days + " days";
+
+      const tbody = document.getElementById("scheduleBody");
+      tbody.innerHTML = "";
+
+      let runs = [];
+      let idx = 0;
+
+      while (true) {
+        const d = new Date(nextPrep);
+        d.setDate(nextPrep.getDate() + idx * 14);
+        if (stripTime(d) > END_DATE) break;
+        runs.push(d);
+        idx++;
+      }
+
+      document.getElementById("runCountLabel").textContent = runs.length;
+
+      runs.forEach((runDate, i) => {
+        const row = document.createElement("tr");
+
+        if (stripTime(runDate).getTime() === stripTime(nextPrep).getTime()) {
+          row.classList.add("row-next");
+        }
+
+        if (stripTime(runDate).getTime() === cleanToday.getTime()) {
+          row.classList.add("row-today");
+        }
+
+        row.innerHTML = `
+          <td>${i + 1}</td>
+          <td>${formatDate(runDate)}</td>
+          <td>${weekdayName(runDate)}</td>
+          <td>${stripTime(runDate).getTime() === stripTime(nextPrep).getTime() ? "Next PREP run" : "Standard PREP run"}</td>
+        `;
+
+        tbody.appendChild(row);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+      buildSchedule();
+    });
+  </script>
+
+</body>
+</html>
